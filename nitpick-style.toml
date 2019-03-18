@@ -1,0 +1,35 @@
+# Config for flake8-nitpick
+# https://pypi.org/project/flake8-nitpick/
+
+[nitpick]
+minimum_version = "0.10.0"
+
+
+[nitpick.files."pyproject.toml".tool.black]
+line-length = 88
+py36 = true
+exclude = '''
+/(
+    migrations
+  | settings
+)/
+'''
+
+
+[nitpick.files.".isort.cfg".settings]
+balanced_wrapping = True
+combine_as_imports = True
+default_section = THIRDPARTY
+include_trailing_comma = True
+indent = '    '
+line_length = 88
+multi_line_output = 3
+not_skip = __init__.py
+skip_glob = **/settings/*.py,**/migrations/*.py
+
+
+[nitpick.files.".flake8".flake8]
+# Ignoring W503: https://github.com/ambv/black#line-breaks--binary-operators
+ignore = W503
+exclude = migrations,settings
+max-line-length = 88
